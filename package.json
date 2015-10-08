@@ -1,0 +1,37 @@
+{
+  "name": "backbone-storage-sync",
+  "version": "0.0.1",
+  "author": "Cormant, Inc. <info@cormant.biz>",
+  "description": "A mixin for Backbone.sync to synchronize to session or local storage instead of a remote server",
+  "main": "backbone-storage-sync.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/cormant/backbone-storage-sync.git"
+  },
+  "keywords": [
+    "backbone",
+    "storage",
+    "sync",
+    "localStorage",
+    "sessionStorage"
+  ],
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/cormant/backbone-storage-sync#readme",
+  "private": true,
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "jquery": "^2.1.4",
+    "lodash": "^3.10.1",
+    "requirejs": "^2.1.20",
+    "sinon": "^1.17.1"
+  },
+  "dependencies": {
+    "backbone": "^1.2.3"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "backbone-storage-sync",
+  "version": "0.0.1",
+  "authors": [
+    "Cormant, Inc. <info@cormant.biz>"
+  ],
+  "description": "A mixin for Backbone.sync to synchronize to session or local storage instead of a remote server",
+  "main": "backbone-storage-sync.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "backbone",
+    "storage",
+    "sync",
+    "sessionStorage",
+    "localStorage"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "~3.10.1",
+    "backbone": "~1.2.3"
+  }
+}
