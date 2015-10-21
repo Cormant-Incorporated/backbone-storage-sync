@@ -126,6 +126,8 @@
             // Defer sync'ing to emulate default sync behavior. 
             _.defer(syncMethod.bind(this, instance, options, deferred));
 
+            instance.trigger('request', instance, deferred, options);
+
             return deferred;
         },
 

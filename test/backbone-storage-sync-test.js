@@ -138,6 +138,17 @@ describe('StorageSyncMixin', function () {
                     done();
                 });
             });
+            
+            it('should trigger "request" event', function () {
+                var storedModel = new StoredModel();
+                var spy = sinon.spy();
+                storedModel.once('request', spy);
+
+                // act
+                storedModel.sync('read');
+
+                expect(spy.calledOnce).to.be.true;
+            });
         });
 
         describe('fetch', function () {
