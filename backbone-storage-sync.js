@@ -26,7 +26,7 @@
             var data = JSON.stringify(json);
             this._syncSet(data);
 
-            options.success.call(options.context, instance, json, options);
+            options.success.call(options.context, json);
             deferred.resolve(json);
         },
         
