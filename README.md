@@ -1,6 +1,6 @@
 # backbone-storage-sync
 
-A mixin for Backbone.sync to synchronize to session or local storage instead of a remote server. 
+A mixin for Backbone.sync to synchronize to session or local storage instead of a remote server.
 
 [![Build Status](https://travis-ci.org/Cormant-Incorporated/backbone-storage-sync.svg?branch=master)](https://travis-ci.org/Cormant-Incorporated/backbone-storage-sync)
 
