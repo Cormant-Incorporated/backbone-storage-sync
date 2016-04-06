@@ -15,7 +15,7 @@
     
     var syncMethods = {
         
-        // Overwrites object store with current instance data.
+        // Writes current instance data to object store.
         create: function (instance, options, deferred) {
             if (instance instanceof Backbone.Model) {
                 // Set the instance `idAttribute` to the `syncKey` so that `isNew()` behaves as expected.
@@ -46,11 +46,11 @@
             deferred.resolve(json);
         },
         
-        // Merges object store with current instance data.
+        // Overwrites object store with current instance data.
         update: function (instance, options, deferred) {
             var defaultStr = instance instanceof Backbone.Model ? JSON.stringify({}) : JSON.stringify([]),
                 storedData = this._syncGet() || defaultStr,
-                json = _.merge(JSON.parse(storedData), instance.toJSON());
+                json = instance.toJSON();
 
             var data = JSON.stringify(json);
             this._syncSet(data);
@@ -59,7 +59,7 @@
             deferred.resolve(json);
         },
         
-        // Merges object store with current instance data (same as "update", for now).
+        // Merges object store with current instance data.
         patch: function (instance, options, deferred) {
             var defaultStr = instance instanceof Backbone.Model ? JSON.stringify({}) : JSON.stringify([]),
                 storedData = this._syncGet() || defaultStr,
