@@ -338,7 +338,7 @@ describe('StorageSyncMixin', function () {
                 });
             });
 
-            it('should not remove existing data', function (done) {
+            it('should remove existing data', function (done) {
                 var storedModel = new StoredModel({ id: syncKey });
                 storedModel.set('unrelated', 'data');
 
@@ -347,17 +347,63 @@ describe('StorageSyncMixin', function () {
 
                 _.defer(function () {
                     var data = JSON.parse(storedModel.syncStore[syncKey]);
-                    expect(data.saved).to.equal('data');
+                    expect(data.saved).to.be.undefined;
                     done();
                 });
             });
 
-            it('should merge existing data with new data', function (done) {
+            it('should overwrite existing object with new object', function (done) {
                 var storedModel = new StoredModel({ id: syncKey });
                 storedModel.set('nested', { unrelated: 'data' });
 
                 // act
                 storedModel.save();
+
+                _.defer(function () {
+                    var data = JSON.parse(storedModel.syncStore[syncKey]);
+                    expect(data.nested).to.deep.equal({
+                        unrelated: 'data'
+                    });
+                    done();
+                });
+            });
+        });
+
+        describe('save (patch)', function () {
+            it('should patch existing data', function (done) {
+                var storedModel = new StoredModel({ id: syncKey });
+                storedModel.set('saved', 'updated');
+
+                // act
+                storedModel.save(null, { patch: true });
+
+                _.defer(function () {
+                    var data = JSON.parse(storedModel.syncStore[syncKey]);
+                    expect(data.saved).to.equal('updated');
+                    done();
+                });
+            });
+
+            it('should not remove existing data', function (done) {
+                var storedModel = new StoredModel({ id: syncKey });
+                storedModel.set('unrelated', 'data');
+
+                // act
+                storedModel.save(null, { patch: true });
+
+                _.defer(function () {
+                    var data = JSON.parse(storedModel.syncStore[syncKey]);
+                    expect(data.saved).to.equal('data');
+                    done();
+                });
+            });
+
+            it('should merge existing object with new object', function (done) {
+                var storedModel = new StoredModel({ id: syncKey });
+                storedModel.set('nested', { unrelated: 'data' });
+
+                // act
+                storedModel.save(null, { patch: true });
 
                 _.defer(function () {
                     var data = JSON.parse(storedModel.syncStore[syncKey]);
