@@ -307,6 +307,24 @@ describe('StorageSyncMixin', function () {
                     done();
                 });
             });
+
+            it('should pass options to toJSON()', function (done) {
+                var unstoredModel = new UnstoredModel();
+                sinon.stub(unstoredModel, 'toJSON');
+                var options = { foo: 'bar' };
+
+                // act
+                unstoredModel.save(null, options);
+
+                _.defer(function () {
+                    expect(unstoredModel.toJSON.calledWithMatch(options)).to.be.true;
+
+                    // cleanup
+                    unstoredModel.toJSON.restore();
+
+                    done();
+                });
+            });
         });
 
         describe('save (update)', function () {
@@ -367,6 +385,25 @@ describe('StorageSyncMixin', function () {
                     done();
                 });
             });
+
+            it('should pass options to toJSON', function (done) {
+                var storedModel = new StoredModel({ id: syncKey });
+                storedModel.set('saved', 'updated');
+                sinon.stub(storedModel, 'toJSON');
+                var options = { foo: 'bar' };                
+
+                // act
+                storedModel.save(null, options);
+
+                _.defer(function () {
+                    expect(storedModel.toJSON.calledWithMatch(options)).to.be.true;
+
+                    // cleanup
+                    storedModel.toJSON.restore();
+
+                    done();
+                });
+            });            
         });
 
         describe('save (patch)', function () {
@@ -414,6 +451,25 @@ describe('StorageSyncMixin', function () {
                     done();
                 });
             });
+
+            it('should pass options to toJSON', function (done) {
+                var storedModel = new StoredModel({ id: syncKey });
+                storedModel.set('saved', 'updated');
+                sinon.stub(storedModel, 'toJSON');
+                var options = { foo: 'bar', patch: true };                    
+
+                // act
+                storedModel.save(null, options);
+
+                _.defer(function () {
+                    expect(storedModel.toJSON.calledWithMatch(options)).to.be.true;
+
+                    // cleanup
+                    storedModel.toJSON.restore();
+                    
+                    done();
+                });
+            });            
         });
 
         describe('destroy', function () {
