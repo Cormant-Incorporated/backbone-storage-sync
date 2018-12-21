@@ -22,7 +22,7 @@
                 instance.set(instance.idAttribute, _.result(this, 'syncKey'));
             }
 
-            var json = instance.toJSON();
+            var json = instance.toJSON(options);
             var data = JSON.stringify(json);
             this._syncSet(data);
 
@@ -50,7 +50,7 @@
         update: function (instance, options, deferred) {
             var defaultStr = instance instanceof Backbone.Model ? JSON.stringify({}) : JSON.stringify([]),
                 storedData = this._syncGet() || defaultStr,
-                json = instance.toJSON();
+                json = instance.toJSON(options);
 
             var data = JSON.stringify(json);
             this._syncSet(data);
@@ -63,7 +63,7 @@
         patch: function (instance, options, deferred) {
             var defaultStr = instance instanceof Backbone.Model ? JSON.stringify({}) : JSON.stringify([]),
                 storedData = this._syncGet() || defaultStr,
-                json = _.merge(JSON.parse(storedData), instance.toJSON());
+                json = _.merge(JSON.parse(storedData), instance.toJSON(options));
 
             var data = JSON.stringify(json);
             this._syncSet(data);
