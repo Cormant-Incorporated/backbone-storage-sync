@@ -1,6 +1,6 @@
 {
   "name": "backbone-storage-sync",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "Cormant, Inc. <sloit@cormant.biz>",
   "description": "A mixin for Backbone.sync to synchronize to session or local storage instead of a remote server",
   "main": "backbone-storage-sync.js",
